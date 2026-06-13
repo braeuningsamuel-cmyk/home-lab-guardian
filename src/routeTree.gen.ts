@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as NetworkRouteImport } from './routes/network'
-import { Route as HostsRouteImport } from './routes/hosts'
 import { Route as DockerRouteImport } from './routes/docker'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -23,11 +22,6 @@ const ServicesRoute = ServicesRouteImport.update({
 const NetworkRoute = NetworkRouteImport.update({
   id: '/network',
   path: '/network',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HostsRoute = HostsRouteImport.update({
-  id: '/hosts',
-  path: '/hosts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DockerRoute = DockerRouteImport.update({
@@ -44,14 +38,12 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/docker': typeof DockerRoute
-  '/hosts': typeof HostsRoute
   '/network': typeof NetworkRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/docker': typeof DockerRoute
-  '/hosts': typeof HostsRoute
   '/network': typeof NetworkRoute
   '/services': typeof ServicesRoute
 }
@@ -59,22 +51,20 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/docker': typeof DockerRoute
-  '/hosts': typeof HostsRoute
   '/network': typeof NetworkRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/docker' | '/hosts' | '/network' | '/services'
+  fullPaths: '/' | '/docker' | '/network' | '/services'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/docker' | '/hosts' | '/network' | '/services'
-  id: '__root__' | '/' | '/docker' | '/hosts' | '/network' | '/services'
+  to: '/' | '/docker' | '/network' | '/services'
+  id: '__root__' | '/' | '/docker' | '/network' | '/services'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DockerRoute: typeof DockerRoute
-  HostsRoute: typeof HostsRoute
   NetworkRoute: typeof NetworkRoute
   ServicesRoute: typeof ServicesRoute
 }
@@ -93,13 +83,6 @@ declare module '@tanstack/react-router' {
       path: '/network'
       fullPath: '/network'
       preLoaderRoute: typeof NetworkRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/hosts': {
-      id: '/hosts'
-      path: '/hosts'
-      fullPath: '/hosts'
-      preLoaderRoute: typeof HostsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/docker': {
@@ -122,20 +105,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DockerRoute: DockerRoute,
-  HostsRoute: HostsRoute,
   NetworkRoute: NetworkRoute,
   ServicesRoute: ServicesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
