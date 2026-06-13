@@ -29,8 +29,8 @@ function DashboardPage() {
   const netList = network.data ?? [];
 
   const stats = [
-    { label: "Hosts", value: `${hostList.filter(h => h.status === "online").length}/${hostList.length}`, sub: "online", icon: Server, to: "/hosts" },
-    { label: "Container", value: `${containerList.filter(c => c.status === "running").length}/${containerList.length}`, sub: "laufen", icon: Boxes, to: "/containers" },
+    { label: "Hosts", value: `${hostList.filter(h => h.status === "online").length}/${hostList.length}`, sub: "online", icon: Server, to: "/" },
+    { label: "Container", value: `${containerList.filter(c => c.status === "running").length}/${containerList.length}`, sub: "laufen", icon: Boxes, to: "/docker" },
     { label: "Services", value: `${serviceList.filter(s => s.status === "online").length}/${serviceList.length}`, sub: "erreichbar", icon: Globe, to: "/services" },
     { label: "Geräte", value: `${netList.filter(n => n.status === "online").length}/${netList.length}`, sub: "im Netz", icon: NetIcon, to: "/network" },
   ];
