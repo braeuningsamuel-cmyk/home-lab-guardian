@@ -9,15 +9,66 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UsersRouteImport } from './routes/users'
+import { Route as TerminalRouteImport } from './routes/terminal'
+import { Route as StorageRouteImport } from './routes/storage'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as ProcessesRouteImport } from './routes/processes'
+import { Route as PowerRouteImport } from './routes/power'
+import { Route as PortsRouteImport } from './routes/ports'
+import { Route as PackagesRouteImport } from './routes/packages'
 import { Route as NetworkRouteImport } from './routes/network'
-import { Route as HostsRouteImport } from './routes/hosts'
-import { Route as ContainersRouteImport } from './routes/containers'
+import { Route as LogsRouteImport } from './routes/logs'
+import { Route as HomelabRouteImport } from './routes/homelab'
+import { Route as FilesRouteImport } from './routes/files'
+import { Route as DockerRouteImport } from './routes/docker'
+import { Route as CrontabRouteImport } from './routes/crontab'
 import { Route as IndexRouteImport } from './routes/index'
 
+const UsersRoute = UsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TerminalRoute = TerminalRouteImport.update({
+  id: '/terminal',
+  path: '/terminal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StorageRoute = StorageRouteImport.update({
+  id: '/storage',
+  path: '/storage',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProcessesRoute = ProcessesRouteImport.update({
+  id: '/processes',
+  path: '/processes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PowerRoute = PowerRouteImport.update({
+  id: '/power',
+  path: '/power',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortsRoute = PortsRouteImport.update({
+  id: '/ports',
+  path: '/ports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PackagesRoute = PackagesRouteImport.update({
+  id: '/packages',
+  path: '/packages',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NetworkRoute = NetworkRouteImport.update({
@@ -25,14 +76,29 @@ const NetworkRoute = NetworkRouteImport.update({
   path: '/network',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HostsRoute = HostsRouteImport.update({
-  id: '/hosts',
-  path: '/hosts',
+const LogsRoute = LogsRouteImport.update({
+  id: '/logs',
+  path: '/logs',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ContainersRoute = ContainersRouteImport.update({
-  id: '/containers',
-  path: '/containers',
+const HomelabRoute = HomelabRouteImport.update({
+  id: '/homelab',
+  path: '/homelab',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FilesRoute = FilesRouteImport.update({
+  id: '/files',
+  path: '/files',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DockerRoute = DockerRouteImport.update({
+  id: '/docker',
+  path: '/docker',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CrontabRoute = CrontabRouteImport.update({
+  id: '/crontab',
+  path: '/crontab',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -43,49 +109,198 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/containers': typeof ContainersRoute
-  '/hosts': typeof HostsRoute
+  '/crontab': typeof CrontabRoute
+  '/docker': typeof DockerRoute
+  '/files': typeof FilesRoute
+  '/homelab': typeof HomelabRoute
+  '/logs': typeof LogsRoute
   '/network': typeof NetworkRoute
+  '/packages': typeof PackagesRoute
+  '/ports': typeof PortsRoute
+  '/power': typeof PowerRoute
+  '/processes': typeof ProcessesRoute
   '/services': typeof ServicesRoute
+  '/settings': typeof SettingsRoute
+  '/storage': typeof StorageRoute
+  '/terminal': typeof TerminalRoute
+  '/users': typeof UsersRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/containers': typeof ContainersRoute
-  '/hosts': typeof HostsRoute
+  '/crontab': typeof CrontabRoute
+  '/docker': typeof DockerRoute
+  '/files': typeof FilesRoute
+  '/homelab': typeof HomelabRoute
+  '/logs': typeof LogsRoute
   '/network': typeof NetworkRoute
+  '/packages': typeof PackagesRoute
+  '/ports': typeof PortsRoute
+  '/power': typeof PowerRoute
+  '/processes': typeof ProcessesRoute
   '/services': typeof ServicesRoute
+  '/settings': typeof SettingsRoute
+  '/storage': typeof StorageRoute
+  '/terminal': typeof TerminalRoute
+  '/users': typeof UsersRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/containers': typeof ContainersRoute
-  '/hosts': typeof HostsRoute
+  '/crontab': typeof CrontabRoute
+  '/docker': typeof DockerRoute
+  '/files': typeof FilesRoute
+  '/homelab': typeof HomelabRoute
+  '/logs': typeof LogsRoute
   '/network': typeof NetworkRoute
+  '/packages': typeof PackagesRoute
+  '/ports': typeof PortsRoute
+  '/power': typeof PowerRoute
+  '/processes': typeof ProcessesRoute
   '/services': typeof ServicesRoute
+  '/settings': typeof SettingsRoute
+  '/storage': typeof StorageRoute
+  '/terminal': typeof TerminalRoute
+  '/users': typeof UsersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/containers' | '/hosts' | '/network' | '/services'
+  fullPaths:
+    | '/'
+    | '/crontab'
+    | '/docker'
+    | '/files'
+    | '/homelab'
+    | '/logs'
+    | '/network'
+    | '/packages'
+    | '/ports'
+    | '/power'
+    | '/processes'
+    | '/services'
+    | '/settings'
+    | '/storage'
+    | '/terminal'
+    | '/users'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/containers' | '/hosts' | '/network' | '/services'
-  id: '__root__' | '/' | '/containers' | '/hosts' | '/network' | '/services'
+  to:
+    | '/'
+    | '/crontab'
+    | '/docker'
+    | '/files'
+    | '/homelab'
+    | '/logs'
+    | '/network'
+    | '/packages'
+    | '/ports'
+    | '/power'
+    | '/processes'
+    | '/services'
+    | '/settings'
+    | '/storage'
+    | '/terminal'
+    | '/users'
+  id:
+    | '__root__'
+    | '/'
+    | '/crontab'
+    | '/docker'
+    | '/files'
+    | '/homelab'
+    | '/logs'
+    | '/network'
+    | '/packages'
+    | '/ports'
+    | '/power'
+    | '/processes'
+    | '/services'
+    | '/settings'
+    | '/storage'
+    | '/terminal'
+    | '/users'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ContainersRoute: typeof ContainersRoute
-  HostsRoute: typeof HostsRoute
+  CrontabRoute: typeof CrontabRoute
+  DockerRoute: typeof DockerRoute
+  FilesRoute: typeof FilesRoute
+  HomelabRoute: typeof HomelabRoute
+  LogsRoute: typeof LogsRoute
   NetworkRoute: typeof NetworkRoute
+  PackagesRoute: typeof PackagesRoute
+  PortsRoute: typeof PortsRoute
+  PowerRoute: typeof PowerRoute
+  ProcessesRoute: typeof ProcessesRoute
   ServicesRoute: typeof ServicesRoute
+  SettingsRoute: typeof SettingsRoute
+  StorageRoute: typeof StorageRoute
+  TerminalRoute: typeof TerminalRoute
+  UsersRoute: typeof UsersRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/users': {
+      id: '/users'
+      path: '/users'
+      fullPath: '/users'
+      preLoaderRoute: typeof UsersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terminal': {
+      id: '/terminal'
+      path: '/terminal'
+      fullPath: '/terminal'
+      preLoaderRoute: typeof TerminalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/storage': {
+      id: '/storage'
+      path: '/storage'
+      fullPath: '/storage'
+      preLoaderRoute: typeof StorageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/processes': {
+      id: '/processes'
+      path: '/processes'
+      fullPath: '/processes'
+      preLoaderRoute: typeof ProcessesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/power': {
+      id: '/power'
+      path: '/power'
+      fullPath: '/power'
+      preLoaderRoute: typeof PowerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ports': {
+      id: '/ports'
+      path: '/ports'
+      fullPath: '/ports'
+      preLoaderRoute: typeof PortsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/packages': {
+      id: '/packages'
+      path: '/packages'
+      fullPath: '/packages'
+      preLoaderRoute: typeof PackagesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/network': {
@@ -95,18 +310,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NetworkRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/hosts': {
-      id: '/hosts'
-      path: '/hosts'
-      fullPath: '/hosts'
-      preLoaderRoute: typeof HostsRouteImport
+    '/logs': {
+      id: '/logs'
+      path: '/logs'
+      fullPath: '/logs'
+      preLoaderRoute: typeof LogsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/containers': {
-      id: '/containers'
-      path: '/containers'
-      fullPath: '/containers'
-      preLoaderRoute: typeof ContainersRouteImport
+    '/homelab': {
+      id: '/homelab'
+      path: '/homelab'
+      fullPath: '/homelab'
+      preLoaderRoute: typeof HomelabRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/files': {
+      id: '/files'
+      path: '/files'
+      fullPath: '/files'
+      preLoaderRoute: typeof FilesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/docker': {
+      id: '/docker'
+      path: '/docker'
+      fullPath: '/docker'
+      preLoaderRoute: typeof DockerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crontab': {
+      id: '/crontab'
+      path: '/crontab'
+      fullPath: '/crontab'
+      preLoaderRoute: typeof CrontabRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -121,10 +357,21 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ContainersRoute: ContainersRoute,
-  HostsRoute: HostsRoute,
+  CrontabRoute: CrontabRoute,
+  DockerRoute: DockerRoute,
+  FilesRoute: FilesRoute,
+  HomelabRoute: HomelabRoute,
+  LogsRoute: LogsRoute,
   NetworkRoute: NetworkRoute,
+  PackagesRoute: PackagesRoute,
+  PortsRoute: PortsRoute,
+  PowerRoute: PowerRoute,
+  ProcessesRoute: ProcessesRoute,
   ServicesRoute: ServicesRoute,
+  SettingsRoute: SettingsRoute,
+  StorageRoute: StorageRoute,
+  TerminalRoute: TerminalRoute,
+  UsersRoute: UsersRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
