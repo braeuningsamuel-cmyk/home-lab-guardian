@@ -85,9 +85,9 @@ function DashboardPage() {
 
       {/* Hosts grid */}
       <div className="mt-8 flex items-center justify-between">
-        <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Hosts</h2>
-        <Link to="/hosts" className="text-xs text-primary hover:underline inline-flex items-center gap-1">
-          Alle anzeigen <ArrowRight className="h-3 w-3" />
+        <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Verbundene Systeme</h2>
+        <Link to="/docker" className="text-xs text-primary hover:underline inline-flex items-center gap-1">
+          Container ansehen <ArrowRight className="h-3 w-3" />
         </Link>
       </div>
       <div className="mt-3 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
