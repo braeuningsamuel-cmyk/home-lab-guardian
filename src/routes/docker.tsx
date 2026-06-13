@@ -6,7 +6,7 @@ import { getContainers } from "@/lib/homelab/api";
 import { formatUptime } from "@/lib/homelab/format";
 import { Play, Square, RotateCw, Search } from "lucide-react";
 
-export const Route = createFileRoute("/containers")({
+export const Route = createFileRoute("/docker")({
   head: () => ({
     meta: [
       { title: "Container · Homelab Control" },
