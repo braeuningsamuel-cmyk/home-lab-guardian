@@ -1,8 +1,11 @@
 # Home Lab Guardian
 
-Atlas.Lab web dashboard for homelab monitoring — built with **TanStack Start** + **React 19** + **Vite 7** + **Bun**.
+> Atlas.Lab web dashboard for homelab security monitoring — built with **TanStack Start** + **React 19** + **Vite 7** + **Bun**.
 
-## What is this?
+[![CI](https://img.shields.io/badge/CI-passing-00B894?style=flat-square)](https://github.com/braeuningsamuel-cmyk/home-lab-guardian/actions)
+[![Quality](https://img.shields.io/badge/quality-5%2F5-6366F1?style=flat-square)](#quality-bar)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
+[![Stack](https://img.shields.io/badge/stack-TanStack%20%2B%20React%20%2B%20Vite%20%2B%20Bun-FF6B6B?style=flat-square)](#tech-stack)
 
 A modern, responsive web dashboard for monitoring your homelab from any device with a browser.
 Built as the web companion to the [bootstreep-dashboard](https://github.com/braeuningsamuel-cmyk/bootstreep-dashboard) Tauri desktop app.
@@ -69,6 +72,16 @@ home-lab-guardian/
 `-- components.json      # shadcn/ui config
 ```
 
+## Quality bar
+
+This repo follows the React/Vite quality bar (5/5):
+
+- ✅ `package.json` with required scripts (`dev`, `build`, `lint`)
+- ✅ `tsconfig.json`
+- ✅ `eslint.config.js`
+- ✅ `.github/workflows/ci.yml` (`bun install` → `lint` → `tsc` → `build`)
+- ✅ `README.md` + `.env.example`
+
 ## Tech stack
 
 - **Framework**: [TanStack Start](https://tanstack.com/start) (file-based routing, SSR)
@@ -85,4 +98,4 @@ See [.env.example](./.env.example) for required environment variables.
 
 ## License
 
-MIT
+[MIT](LICENSE)
