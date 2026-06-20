@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Lint + Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2.0.2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Type check
+        run: bunx tsc --noEmit
+
+      - name: Build
+        run: bun run build
+
+      - name: Validate package.json
+        run: |
+          node -e "const p = require('./package.json'); \
+            if (!p.name) throw new Error('package.json missing name'); \
+            if (!p.version) throw new Error('package.json missing version'); \
+            if (!p.scripts || !p.scripts.build) throw new Error('package.json missing build script'); \
+            if (!p.scripts || !p.scripts.lint) throw new Error('package.json missing lint script'); \
+            console.log('package.json OK');"
+
+      - name: Validate required files
+        run: |
+          test -f tsconfig.json && echo "tsconfig.json OK"
+          test -f eslint.config.js && echo "eslint.config.js OK"
+          test -f vite.config.ts && echo "vite.config.ts OK"
+          test -f .env.example && echo ".env.example OK"
+          test -f README.md && echo "README.md OK"
